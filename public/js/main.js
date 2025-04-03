@@ -9,11 +9,7 @@ async function apiRequest(){
         const data = await response.json()
 
         console.log(data)
-
-const ul = document.querySelector('.app');
-
-document.querySelector('ul').innerText = data.suggestions
-
+        document.querySelector('h2').innerText = data.suggestions
     }catch(error){
         console.log(error)
     }

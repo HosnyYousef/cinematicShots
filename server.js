@@ -1,4 +1,13 @@
 
+// After I added the html script tag I got the following errors in my console: 
+
+// "GET http://localhost:8000/js/main.js net::ERR_ABORTED 404 (Not Found)
+// localhost/:1 Refused to execute script from 'http://localhost:8000/js/main.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled."
+
+// a quick fix for that, is to add the following line above the app.get line: 
+// app.use(express.static("public"));
+//  and to create a directory called 'public/js' and put your javascript into that new folder
+
 const express = require('express')
 const app = express()
 const cors = require('cors')
@@ -124,3 +133,5 @@ app.get('/api/:cameraShot', (request, response) => {
 app.listen(process.env.PORT || PORT, () => {
     console.log(`The server is running on port ${PORT}! You better go catch it!`)
 })
+
+// https://git.heroku.com/simple-cinematicshots.git

@@ -20,7 +20,7 @@ app.use(cors())
 const cinematicShots = {
     'suspense': {
         'suggestions': [
-            "Slow dolly-in on character’s face",
+            `Slow dolly-in on character’s face`,
             "Low angle shot with harsh side lighting",
             "Shaky handheld corridor shot",
             "Extreme close-up on eyes",
@@ -36,8 +36,8 @@ const cinematicShots = {
             "Focus pull from lips to eyes"
         ]
     },
-    action: {
-        suggestions: [
+    'action': {
+        'suggestions': [
             "High-speed tracking shot",
             "Dutch angle punch impact",
             "Wide static explosion shot",
@@ -54,8 +54,8 @@ const cinematicShots = {
             "Split-screen phone call"
         ]
     },
-    drama: {
-        suggestions: [
+    'drama': {
+        'suggestions': [
             "Close-up on emotional expression",
             "Slow pull focus between characters",
             "Static shot with long silence",
@@ -109,7 +109,7 @@ const cinematicShots = {
         ]
     },
     'no shot': {
-        'no shot': [
+        'suggestions': [
             "no recommendations"
         ]
     }

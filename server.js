@@ -1,6 +1,7 @@
-const cors = require('cors')
+
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const PORT = 8000
 
 app.use(cors())
@@ -8,7 +9,7 @@ app.use(cors())
 const cinematicShots = {
     'suspense': {
       'suggestions': [
-        "Slow dolly-in on character’s face",
+        `Slow dolly-in on character’s face`,
         "Low angle shot with harsh side lighting",
         "Shaky handheld corridor shot",
         "Extreme close-up on eyes",
@@ -106,12 +107,13 @@ const cinematicShots = {
   app.get('/', (request, response)=>{
     response.sendFile(__dirname + '/index.html')
 })
+
 app.get('/api/:cameraShot', (request,response)=>{
     const cameraShots = request.params.cameraShot.toLowerCase()
     if(cinematicShots[cameraShots]){
         response.json(cinematicShots[cameraShots])
     }else{
-        response.json(rappers['no shot'])
+        response.json(cinematicShots['no shot'])
     }
 })
 

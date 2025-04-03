@@ -5,10 +5,9 @@ const PORT = 8000
 
 app.use(cors())
 
-const cinematicShots = [
-    {
-      keyword: "suspense",
-      suggestions: [
+const cinematicShots = {
+    'suspense': {
+      'suggestions': [
         "Slow dolly-in on character’s face",
         "Low angle shot with harsh side lighting",
         "Shaky handheld corridor shot",
@@ -16,9 +15,8 @@ const cinematicShots = [
         "Shadow silhouette against doorway"
       ]
     },
-    {
-      keyword: "romance",
-      suggestions: [
+    'romance': {
+      'suggestions': [
         "Soft backlit close-up at golden hour",
         "Two-shot of hands brushing",
         "Wide shot with gentle lens flare",
@@ -26,9 +24,8 @@ const cinematicShots = [
         "Focus pull from lips to eyes"
       ]
     },
-    {
-      keyword: "action",
-      suggestions: [
+    'action': {
+      'suggestions': [
         "High-speed tracking shot",
         "Dutch angle punch impact",
         "Wide static explosion shot",
@@ -36,9 +33,8 @@ const cinematicShots = [
         "Overhead drone shot for escape"
       ]
     },
-    {
-      keyword: "comedy",
-      suggestions: [
+    'comedy': {
+      'suggestions': [
         "Whip pan reaction shot",
         "Wide shot with exaggerated blocking",
         "Zoom crash for awkward moment",
@@ -46,9 +42,8 @@ const cinematicShots = [
         "Split-screen phone call"
       ]
     },
-    {
-      keyword: "drama",
-      suggestions: [
+    'drama': {
+      'suggestions': [
         "Close-up on emotional expression",
         "Slow pull focus between characters",
         "Static shot with long silence",
@@ -56,9 +51,8 @@ const cinematicShots = [
         "Push-in through doorway"
       ]
     },
-    {
-      keyword: "horror",
-      suggestions: [
+    'horror': {
+      'suggestions': [
         "Tracking shot from behind in the dark",
         "Static wide shot with creepy background detail",
         "Quick pan to reveal",
@@ -66,9 +60,8 @@ const cinematicShots = [
         "Canted angle hallway shot"
       ]
     },
-    {
-      keyword: "thriller",
-      suggestions: [
+    'thriller': {
+      'suggestions': [
         "Over-the-shoulder following shot",
         "Long take with slow zoom",
         "Reflected POV in a mirror",
@@ -76,9 +69,8 @@ const cinematicShots = [
         "Door ajar with shallow focus"
       ]
     },
-    {
-      keyword: "fantasy",
-      suggestions: [
+    'fantasy': {
+      'suggestions': [
         "Sweeping wide shot of magical location",
         "Low angle with light flares",
         "Crane shot around character with cape",
@@ -86,9 +78,8 @@ const cinematicShots = [
         "Slow motion action magic effect"
       ]
     },
-    {
-      keyword: "documentary",
-      suggestions: [
+    'documentary': {
+      'suggestions': [
         "Handheld talking head interview",
         "B-roll nature insert shots",
         "Archival footage overlay",
@@ -96,28 +87,31 @@ const cinematicShots = [
         "Extreme close-up of hands at work"
       ]
     },
-    {
-      keyword: "music video",
-      suggestions: [
+    'music video': {
+      'suggestions': [
         "Rapid jump cuts on beat",
         "Color-graded slow motion performance",
         "Lens flare during chorus",
         "POV dancing crowd shot",
         "Dynamic crane or gimbal follow"
+        ]
+      },
+    'no shot': {
+      'no shot': [
+        "no recommendations"
       ]
     }
-  ];
-  
+  };
 
   app.get('/', (request, response)=>{
     response.sendFile(__dirname + '/index.html')
 })
-app.get('/api/:cameraShots', (request,response)=>{
-    const rappersName = request.params.rapperName.toLowerCase()
-    if(rappers[rappersName]){
-        response.json(rappers[rappersName])
+app.get('/api/:cameraShot', (request,response)=>{
+    const cameraShots = request.params.cameraShot.toLowerCase()
+    if(cinematicShots[cameraShots]){
+        response.json(cinematicShots[cameraShots])
     }else{
-        response.json(rappers['dylan'])
+        response.json(rappers['no shot'])
     }
 })
 
